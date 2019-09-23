@@ -1,7 +1,7 @@
 const execSync = require('child_process').execSync;
 const os = require('os');
 const path = require('path');
-const engine = Vue.prototyle.engine;
+const engine = Vue.prototyle.$engine;
 const fs = require('fs');
 
 const getNativeBinary = function() {
