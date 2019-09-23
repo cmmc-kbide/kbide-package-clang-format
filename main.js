@@ -8,9 +8,9 @@ const getNativeBinary = function() {
   let nativeBinary;
 
   if (os.platform() === 'win32') {
-    nativeBinary = `${engine.util.packageDir}/clang-format/bin/win32/clang-format.exe`;
+    nativeBinary = `${engine.util.packageDir}/kbide-package-clang-format/bin/win32/clang-format.exe`;
   } else {
-    nativeBinary = `${engine.util.packageDir}/clang-format/bin/${os.platform()}_${os.arch()}/clang-format`;
+    nativeBinary = `${engine.util.packageDir}/kbide-package-clang-format/bin/${os.platform()}_${os.arch()}/clang-format`;
   }
 
   if (!fs.existsSync(nativeBinary)) {
