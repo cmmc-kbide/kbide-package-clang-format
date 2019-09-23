@@ -1,7 +1,7 @@
 const execSync = require('child_process').execSync;
 const os = require('os');
 const path = require('path');
-const engine = Vue.prototyle.$engine;
+const engine = Vue.prototype.$engine;
 const fs = require('fs');
 
 const getNativeBinary = function() {
@@ -35,15 +35,7 @@ const getEndJSONPosition = (text) => {
 const getReturnedFormattedText = stdout => stdout.slice(getEndJSONPosition(stdout));
 
 const format = function(sourcecode,style){
-    let exe;
-    if (!exe) {
-      const exePackageLocation = path.dirname(getNativeBinary());
-      if (os.platform() === 'win32') {
-        exe = path.join(exePackageLocation, '/bin/win32/clang-format.exe');
-      } else {
-        exe = path.join(exePackageLocation, `/bin/${os.platform()}_${os.arch()}/clang-format`);
-      }
-    }
+    let exe = getNativeBinary();
     const options = {
       style: style,
     };
