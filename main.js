@@ -34,10 +34,11 @@ const getEndJSONPosition = (text) => {
 
 const getReturnedFormattedText = stdout => stdout.slice(getEndJSONPosition(stdout));
 
-const format = function(sourcecode,style){
+const format = function(sourcecode){
     let exe = getNativeBinary();
+    let cwd = `${engine.util.packageDir}/kbide-package-clang-format`;
     const options = {
-      style: style,
+      style: 'file',
     };
     const args = Object.keys(options).reduce((memo, optionKey) => {
       const optionValue = options[optionKey];
@@ -46,8 +47,9 @@ const format = function(sourcecode,style){
       }
       return memo;
     }, '');
-    const execOptions = { input: sourcecode };
+    const execOptions = { input: sourcecode, cwd : cwd};
     try {
+      console.log(`"${exe}" ${args}`);
       const stdout = execSync(`"${exe}" ${args}`, execOptions).toString();
       return getReturnedFormattedText(stdout);
     } catch (error) {
